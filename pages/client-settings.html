@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Settings · Solace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Plain relative paths so it opens without Flask (file lives in frontend-Solace/templates/).
+       When routing is ready, swap these for url_for(...) links. -->
+  <link rel="stylesheet" href="../static/css/settings.css">
+</head>
+<body class="settings-body">
+  <div class="st-layout">
+
+    <!-- ===== Sidebar ===== -->
+    <aside class="st-sidebar">
+      <img class="st-logo" src="../static/img/solace-logo.png" alt="Solace">
+      <hr class="st-divider">
+
+      <nav aria-label="Main menu">
+        <p class="st-nav-heading">Main Menu</p>
+        <a href="#" class="st-nav-link">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>
+          Dashboard
+        </a>
+        <a href="#" class="st-nav-link">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.9A8 8 0 1 1 21 12z"/></svg>
+          Messages
+        </a>
+        <a href="#" class="st-nav-link">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/><circle cx="12" cy="15.5" r="1.8"/></svg>
+          Appointments
+        </a>
+        <a href="#" class="st-nav-link">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h9l5 5v4"/><path d="M14 3v5h5"/><circle cx="16" cy="17" r="5"/><path d="M16 14.5V17l1.5 1"/><path d="M4 5v14a2 2 0 0 0 2 2h4"/></svg>
+          Session History
+        </a>
+
+        <p class="st-nav-heading st-nav-heading--account">Account</p>
+        <a href="#" class="st-nav-link">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+          Profile
+        </a>
+        <a href="#" class="st-nav-link is-active" aria-current="page">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+          Settings
+        </a>
+      </nav>
+
+      <button type="button" class="st-logout" id="logout-btn">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg>
+        Log Out
+      </button>
+    </aside>
+
+    <!-- ===== Main ===== -->
+    <main class="st-main">
+      <header class="st-header">
+        <span class="st-header-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+        </span>
+        <h1>Settings</h1>
+      </header>
+
+      <form id="settings-form" class="st-grid" novalidate>
+
+        <!-- Left column -->
+        <div class="st-col">
+          <section class="st-card">
+            <h2>Profile</h2>
+            <div class="st-field">
+              <label for="full-name">Full Name</label>
+              <input type="text" id="full-name" name="full_name" placeholder="Value" autocomplete="name">
+            </div>
+            <div class="st-field">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="Value" autocomplete="tel">
+            </div>
+            <div class="st-field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="Value" autocomplete="email">
+            </div>
+          </section>
+
+          <section class="st-card">
+            <h2>Care Preference</h2>
+            <div class="st-field st-field--select">
+              <span class="st-label" id="lbl-format">Session format</span>
+              <div class="st-dropdown" data-default="Video">
+                <input type="hidden" name="session_format" value="Video">
+                <button type="button" class="st-dd-btn" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="lbl-format">
+                  <span class="st-dd-value">Video</span>
+                  <svg class="st-dd-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+                <ul class="st-dd-list" role="listbox" aria-labelledby="lbl-format" tabindex="-1" hidden>
+          <li role="option" id="session_format-0" data-value="Video" aria-selected="true">Video</li>
+          <li role="option" id="session_format-1" data-value="Messages" aria-selected="false">Messages</li>
+                </ul>
+              </div>
+            </div>
+            <div class="st-field st-field--select">
+              <span class="st-label" id="lbl-time">Preferred Time</span>
+              <div class="st-dropdown" data-default="Evening">
+                <input type="hidden" name="preferred_time" value="Evening">
+                <button type="button" class="st-dd-btn" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="lbl-time">
+                  <span class="st-dd-value">Evening</span>
+                  <svg class="st-dd-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+                <ul class="st-dd-list" role="listbox" aria-labelledby="lbl-time" tabindex="-1" hidden>
+          <li role="option" id="preferred_time-0" data-value="Morning" aria-selected="false">Morning</li>
+          <li role="option" id="preferred_time-1" data-value="Afternoon" aria-selected="false">Afternoon</li>
+          <li role="option" id="preferred_time-2" data-value="Evening" aria-selected="true">Evening</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section class="st-card">
+            <h2>Notifications</h2>
+            <label class="st-check">
+              <span>Message Alerts</span>
+              <input type="checkbox" name="message_alerts" checked>
+            </label>
+            <label class="st-check">
+              <span>Session Reminders</span>
+              <input type="checkbox" name="session_reminders" checked>
+            </label>
+          </section>
+        </div>
+
+        <!-- Right column -->
+        <div class="st-col">
+          <section class="st-card">
+            <h2>Privacy and Security</h2>
+            <label class="st-check st-check--lg">
+              <span>Let other users see your profile</span>
+              <input type="checkbox" name="public_profile" checked>
+            </label>
+            <label class="st-check st-check--lg">
+              <span>Let therapists see your profile</span>
+              <input type="checkbox" name="therapist_profile" checked>
+            </label>
+            <label class="st-check st-check--lg">
+              <span>Two-Factor Authentication</span>
+              <input type="checkbox" name="two_factor" checked>
+            </label>
+            <a href="#" class="st-change-pw">Change password</a>
+          </section>
+
+          <section class="st-card">
+            <h2>Emergency Contact</h2>
+            <div class="st-field">
+              <label for="contact-name">Contact Name</label>
+              <input type="text" id="contact-name" name="contact_name" placeholder="Value">
+            </div>
+            <div class="st-field">
+              <label for="contact-phone">Phone Number</label>
+              <input type="tel" id="contact-phone" name="contact_phone" placeholder="Value">
+            </div>
+            <p class="st-note">Only if your therapist is concerned about your safety</p>
+          </section>
+
+          <div class="st-actions">
+            <a href="#" class="st-delete" id="delete-account">Delete your account</a>
+            <button type="submit" class="st-btn st-btn--primary">Save Changes</button>
+            <button type="reset" class="st-btn st-btn--outline" id="cancel-btn">Cancel</button>
+            <a href="#" class="st-signout" id="signout-link">Sign Out</a>
+          </div>
+        </div>
+
+      </form>
+    </main>
+  </div>
+
+  <div class="st-toast" id="st-toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="../static/js/settings.js"></script>
+</body>
+</html>

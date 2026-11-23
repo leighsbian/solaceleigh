@@ -1,0 +1,498 @@
+/* Solace client Settings page.
+   Everything is scoped to .settings-body and variables are prefixed --st-
+   so it cannot clash with styles.css or auth.css. */
+
+.settings-body {
+  --st-sidebar: #d5c2e5;
+  --st-card: #d8c6e5;
+  --st-active: #ebdff4;
+  --st-accent: #b98fca;
+  --st-ink: #4d3560;
+  --st-ink-soft: #6c5380;
+  --st-placeholder: #bba6c9;
+  --st-purple: #8b6db8;
+  --st-check: #6b4fa0;
+  --st-border: #ece5f1;
+
+  margin: 0;
+  min-height: 100vh;
+  background: #fff;
+  color: var(--st-ink);
+  font-family: "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.settings-body *,
+.settings-body *::before,
+.settings-body *::after { box-sizing: border-box; }
+
+.settings-body h1,
+.settings-body h2,
+.settings-body .st-nav-heading {
+  font-family: "Gilda Display", Georgia, serif;
+  font-weight: 400;
+}
+
+/* ---------- Layout ---------- */
+.settings-body .st-layout {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  min-height: 100vh;
+  padding: 10px;
+  gap: 0;
+}
+
+/* ---------- Sidebar ---------- */
+.settings-body .st-sidebar {
+  position: sticky;
+  top: 10px;
+  align-self: start;
+  height: calc(100vh - 20px);
+  display: flex;
+  flex-direction: column;
+  padding: 18px 8px 16px;
+  background: var(--st-sidebar);
+}
+
+.settings-body .st-logo {
+  display: block;
+  width: 130px;
+  height: auto;
+  margin: 4px auto 0;
+  mix-blend-mode: multiply; /* removes the white box around the logo */
+}
+
+.settings-body .st-divider {
+  width: 100%;
+  margin: 14px 0 20px;
+  border: 0;
+  border-top: 1px solid var(--st-ink);
+  opacity: 0.7;
+}
+
+.settings-body .st-nav-heading {
+  margin: 0 0 8px 6px;
+  font-size: 1rem;
+  color: var(--st-ink);
+}
+.settings-body .st-nav-heading--account { margin-top: 26px; }
+
+.settings-body .st-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 10px;
+  margin-bottom: 4px;
+  font-family: "Gilda Display", Georgia, serif;
+  font-size: 0.78rem;
+  color: var(--st-purple);
+  text-decoration: none;
+  border-radius: 10px;
+  transition: background 0.15s ease;
+}
+.settings-body .st-nav-link:hover { background: rgba(255, 255, 255, 0.35); }
+.settings-body .st-nav-link.is-active { background: var(--st-active); }
+
+.settings-body .st-nav-link svg,
+.settings-body .st-logout svg {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.settings-body .st-logout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: auto 6px 0;
+  padding: 10px;
+  font-family: "Gilda Display", Georgia, serif;
+  font-size: 0.85rem;
+  color: #e5253d;
+  background: #f3eaf7;
+  border: 1px solid #e3d3ec;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.settings-body .st-logout:hover { background: #fff; }
+.settings-body .st-logout svg { width: 18px; height: 18px; }
+
+/* ---------- Main ---------- */
+.settings-body .st-main { padding: 12px 24px 24px 26px; }
+
+.settings-body .st-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.settings-body .st-header h1 { margin: 0; font-size: 1.9rem; color: var(--st-ink); }
+
+.settings-body .st-header-icon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  color: #fff;
+  background: var(--st-accent);
+  border-radius: 10px;
+}
+.settings-body .st-header-icon svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.settings-body .st-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  align-items: start;
+}
+.settings-body .st-col { display: flex; flex-direction: column; gap: 12px; }
+
+/* ---------- Cards ---------- */
+.settings-body .st-card {
+  padding: 12px 14px 14px;
+  background: var(--st-card);
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(77, 53, 96, 0.18);
+}
+.settings-body .st-card h2 {
+  margin: 0 0 8px;
+  font-size: 1.3rem;
+  color: var(--st-ink);
+}
+
+.settings-body .st-field { margin-bottom: 10px; }
+.settings-body .st-field:last-child { margin-bottom: 0; }
+.settings-body .st-field label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 0.68rem;
+  color: var(--st-ink);
+}
+
+.settings-body input[type="text"],
+.settings-body input[type="tel"],
+.settings-body input[type="email"],
+.settings-body input[type="time"],
+.settings-body textarea {
+  width: 100%;
+  height: 26px;
+  padding: 0 10px;
+  font: inherit;
+  font-size: 0.68rem;
+  color: var(--st-ink);
+  background: #fff;
+  border: 1px solid transparent;
+  border-radius: 6px;
+}
+.settings-body input::placeholder { color: var(--st-placeholder); }
+
+.settings-body input:focus-visible {
+  outline: none;
+  border-color: var(--st-purple);
+  box-shadow: 0 0 0 3px rgba(139, 109, 184, 0.28);
+}
+
+/* Selects (Care Preference) */
+.settings-body .st-field--select { margin-bottom: 8px; }
+.settings-body .st-field--select .st-label {
+  display: block;
+  font-family: "Inter", system-ui, sans-serif;
+  margin-bottom: 6px;
+  padding-left: 6px;
+  font-size: 0.95rem;
+}
+
+/* Custom dropdown */
+.settings-body .st-dropdown { position: relative; }
+.settings-body .st-dd-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 30px;
+  padding: 0 10px 0 12px;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--st-ink);
+  background: #fff;
+  border: 1px solid #a99bb8;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.settings-body .st-dd-btn:hover { border-color: var(--st-purple); }
+.settings-body .st-dd-btn:focus-visible,
+.settings-body .st-dd-btn[aria-expanded="true"] {
+  outline: none;
+  border-color: var(--st-purple);
+  box-shadow: 0 0 0 3px rgba(139, 109, 184, 0.28);
+}
+.settings-body .st-dd-chev {
+  flex: none;
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: var(--st-ink);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.15s ease;
+}
+.settings-body .st-dd-btn[aria-expanded="true"] .st-dd-chev { transform: rotate(180deg); }
+
+.settings-body .st-dd-list {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  z-index: 20;
+  margin: 0;
+  padding: 4px;
+  list-style: none;
+  background: #fff;
+  border: 1px solid #cdbfdb;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(77, 53, 96, 0.22);
+}
+.settings-body .st-dd-list li {
+  padding: 7px 10px;
+  font-size: 0.8rem;
+  color: var(--st-ink);
+  border-radius: 6px;
+  cursor: pointer;
+}
+.settings-body .st-dd-list li:hover,
+.settings-body .st-dd-list li.is-active { background: #efe6f6; }
+.settings-body .st-dd-list li[aria-selected="true"] {
+  font-weight: 600;
+  background: var(--st-card);
+}
+
+/* Checkbox rows */
+.settings-body .st-check {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 3px 4px;
+  font-family: "Gilda Display", Georgia, serif;
+  font-size: 0.95rem;
+  color: var(--st-ink);
+  cursor: pointer;
+}
+.settings-body .st-check--lg { font-size: 1rem; padding: 6px 4px; }
+.settings-body .st-check input {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  background: #fff;
+  border: 1.5px solid var(--st-check);
+  border-radius: 4px;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+.settings-body .st-check input:checked {
+  background: var(--st-check) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'><path d='m5 12 5 5 9-10'/></svg>") no-repeat center / 12px;
+}
+.settings-body .st-check input:focus-visible {
+  outline: 3px solid rgba(139, 109, 184, 0.45);
+  outline-offset: 2px;
+}
+.settings-body .st-check--lg input { margin-right: 6px; }
+
+.settings-body .st-change-pw {
+  display: inline-block;
+  margin: 10px 4px 4px;
+  font-family: "Gilda Display", Georgia, serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--st-ink);
+}
+
+.settings-body .st-note {
+  margin: 8px 0 0;
+  font-size: 0.62rem;
+  color: var(--st-ink);
+}
+
+/* ---------- Therapist page additions ---------- */
+.settings-body textarea {
+  display: block;
+  height: auto;
+  min-height: 26px;
+  padding: 5px 10px;
+  line-height: 1.4;
+  resize: vertical;
+}
+.settings-body input[readonly] { color: var(--st-placeholder); cursor: default; }
+.settings-body .st-nav-link { line-height: 1.15; }
+
+.settings-body .st-license-row { display: flex; align-items: center; gap: 10px; }
+.settings-body .st-license-row input[type="text"] { flex: 1; min-width: 0; }
+.settings-body .st-card .st-field label.st-verify {
+  display: inline-block;
+  max-width: 110px;
+  margin: 0;
+  overflow: hidden;
+  font-family: "Gilda Display", Georgia, serif;
+  font-size: 0.6rem;
+  text-decoration: underline;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.settings-body .st-verify:hover { color: #000; }
+
+.settings-body .st-dropdown--sm .st-dd-btn {
+  height: 26px;
+  font-size: 0.68rem;
+  font-weight: 400;
+  border-color: transparent;
+  border-radius: 6px;
+}
+.settings-body .st-dropdown--sm .st-dd-btn:hover { border-color: transparent; }
+.settings-body .st-dropdown--sm .st-dd-btn:focus-visible,
+.settings-body .st-dropdown--sm .st-dd-btn[aria-expanded="true"] { border-color: var(--st-purple); }
+.settings-body .st-dd-value.is-placeholder { color: var(--st-placeholder); font-weight: 400; }
+
+.settings-body .st-hours-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 4px;
+  font-family: "Gilda Display", Georgia, serif;
+  font-size: 0.95rem;
+}
+.settings-body .st-link-btn {
+  padding: 0;
+  font-family: "Gilda Display", Georgia, serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--st-ink);
+  background: none;
+  border: 0;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.settings-body .st-link-btn:hover { color: #000; }
+
+.settings-body .st-hours-editor {
+  margin-top: 10px;
+  padding: 10px 12px 12px;
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 8px;
+}
+.settings-body .st-editor-label { margin: 0 0 6px; font-size: 0.68rem; }
+.settings-body .st-days { display: flex; gap: 6px; flex-wrap: wrap; }
+.settings-body .st-day {
+  width: 28px;
+  height: 28px;
+  font: inherit;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--st-ink);
+  background: #fff;
+  border: 1px solid #cdbfdb;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+.settings-body .st-day.is-on { color: #fff; background: var(--st-purple); border-color: var(--st-purple); }
+.settings-body .st-day:focus-visible { outline: 3px solid rgba(139, 109, 184, 0.45); outline-offset: 2px; }
+.settings-body .st-times { display: flex; flex-wrap: wrap; gap: 10px 12px; margin: 10px 0; }
+.settings-body .st-times label { display: flex; align-items: center; gap: 6px; font-size: 0.68rem; }
+.settings-body .st-times input { width: 118px; }
+.settings-body .st-editor-done { width: auto; padding: 0 18px; }
+
+/* ---------- Actions ---------- */
+.settings-body .st-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  margin-top: 2px;
+  text-align: center;
+}
+.settings-body .st-delete,
+.settings-body .st-signout {
+  font-family: "Gilda Display", Georgia, serif;
+  font-size: 0.68rem;
+  color: var(--st-ink);
+}
+.settings-body .st-delete:hover,
+.settings-body .st-signout:hover { color: #000; }
+
+.settings-body .st-btn {
+  width: 100%;
+  height: 26px;
+  font: inherit;
+  font-size: 0.68rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+.settings-body .st-btn:active { transform: translateY(1px); }
+.settings-body .st-btn--primary {
+  color: #fff;
+  background: var(--st-purple);
+  border: 1px solid var(--st-purple);
+}
+.settings-body .st-btn--primary:hover { background: #7a5ca8; }
+.settings-body .st-btn--outline {
+  color: var(--st-purple);
+  background: #fff;
+  border: 1px solid var(--st-purple);
+}
+.settings-body .st-btn--outline:hover { background: #f4eef9; }
+.settings-body .st-btn:focus-visible {
+  outline: 3px solid rgba(139, 109, 184, 0.45);
+  outline-offset: 2px;
+}
+
+/* ---------- Toast ---------- */
+.settings-body .st-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  padding: 10px 18px;
+  font-size: 0.8rem;
+  color: #fff;
+  background: var(--st-ink);
+  border-radius: 999px;
+  box-shadow: 0 6px 18px rgba(77, 53, 96, 0.3);
+}
+.settings-body [hidden] { display: none !important; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .settings-body .st-license-row { flex-wrap: wrap; }
+  .settings-body .st-layout { grid-template-columns: 1fr; }
+  .settings-body .st-sidebar { position: static; height: auto; }
+  .settings-body .st-logout { margin-top: 20px; }
+  .settings-body .st-grid { grid-template-columns: 1fr; }
+  .settings-body .st-main { padding: 16px 6px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .settings-body * { transition: none !important; }
+}

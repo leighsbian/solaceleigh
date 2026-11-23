@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Therapist Settings · Solace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Plain relative paths so it opens without Flask (file lives in pages/).
+       When routing is ready, swap these for url_for(...) links. -->
+  <link rel="stylesheet" href="../static/css/settings.css">
+</head>
+<body class="settings-body">
+  <div class="st-layout">
+
+    <!-- ===== Sidebar ===== -->
+    <aside class="st-sidebar">
+      <img class="st-logo" src="../static/img/solace-logo.png" alt="Solace">
+      <hr class="st-divider">
+
+      <nav aria-label="Main menu">
+        <p class="st-nav-heading">Main Menu</p>
+        <a href="#" class="st-nav-link">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>
+          Dashboard
+        </a>
+        <a href="#" class="st-nav-link">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/><circle cx="12" cy="8.3" r="1.6"/><path d="M9.2 13.2a3 3 0 0 1 5.6 0"/></svg>
+          My Sessions
+        </a>
+        <a href="#" class="st-nav-link">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="9" r="2.4"/><path d="M2.5 20a5.5 5.5 0 0 1 11 0"/><path d="M15 15.2a4.5 4.5 0 0 1 6.5 4"/></svg>
+          My Clients
+        </a>
+        <a href="#" class="st-nav-link">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/><circle cx="12" cy="15.5" r="1.8"/></svg>
+          Appointments
+        </a>
+        <a href="#" class="st-nav-link">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h9l5 5v4"/><path d="M14 3v5h5"/><circle cx="16" cy="17" r="5"/><path d="M16 14.5V17l1.5 1"/><path d="M4 5v14a2 2 0 0 0 2 2h4"/></svg>
+          Session History
+        </a>
+        <a href="#" class="st-nav-link">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.2 8 8 9 4.8-1 8-4.5 8-9V6z"/></svg>
+          Therapist Verification
+        </a>
+
+        <p class="st-nav-heading st-nav-heading--account">Account</p>
+        <a href="#" class="st-nav-link">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+          Profile
+        </a>
+        <a href="#" class="st-nav-link is-active" aria-current="page">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+          Settings
+        </a>
+      </nav>
+
+      <button type="button" class="st-logout" id="logout-btn">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></svg>
+        Log Out
+      </button>
+    </aside>
+
+    <!-- ===== Main ===== -->
+    <main class="st-main">
+      <header class="st-header">
+        <span class="st-header-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></span>
+        <h1>Settings</h1>
+      </header>
+
+      <form id="settings-form" class="st-grid" novalidate>
+
+        <!-- Left column -->
+        <div class="st-col">
+          <section class="st-card">
+            <h2>Profile</h2>
+            <div class="st-field">
+              <label for="full-name">Full Name</label>
+              <input type="text" id="full-name" name="full_name" placeholder="Value" autocomplete="name">
+            </div>
+            <div class="st-field">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="Value" autocomplete="tel">
+            </div>
+            <div class="st-field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="Value" autocomplete="email">
+            </div>
+            <div class="st-field">
+              <label for="license">License Number</label>
+              <div class="st-license-row">
+                <input type="text" id="license" name="license" placeholder="Value">
+                <input type="file" id="credentials" name="credentials" accept=".pdf,.jpg,.jpeg,.png" hidden>
+                <label for="credentials" class="st-verify" id="verify-link">Verify credentials</label>
+              </div>
+            </div>
+          </section>
+
+          <section class="st-card">
+            <h2>Professional Information</h2>
+            <div class="st-field">
+              <label for="qualification">Qualification</label>
+              <input type="text" id="qualification" name="qualification" placeholder="Value">
+            </div>
+            <div class="st-field">
+              <label for="specializations">Specializations</label>
+              <input type="text" id="specializations" name="specializations" placeholder="Value">
+            </div>
+            <div class="st-field">
+              <label for="about">About Me</label>
+              <textarea id="about" name="about" rows="1" placeholder="Value"></textarea>
+            </div>
+            <div class="st-field">
+              <label for="availability-summary">Availability</label>
+              <input type="text" id="availability-summary" name="availability_summary" value="-" readonly>
+            </div>
+          </section>
+        </div>
+
+        <!-- Right column -->
+        <div class="st-col">
+          <section class="st-card">
+            <h2>Availability</h2>
+            <div class="st-field">
+              <label for="tz-btn">Timezone</label>
+              <div class="st-dropdown st-dropdown--sm" data-default="">
+                <input type="hidden" name="timezone" value="">
+                <button type="button" class="st-dd-btn" id="tz-btn" aria-haspopup="listbox" aria-expanded="false" data-placeholder="Dropdown">
+                  <span class="st-dd-value is-placeholder">Dropdown</span>
+                  <svg class="st-dd-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+                <ul class="st-dd-list" role="listbox" aria-label="Timezone" tabindex="-1" hidden>
+              <li role="option" id="tz-0" data-value="Asia/Manila (GMT+8)" aria-selected="false">Asia/Manila (GMT+8)</li>
+              <li role="option" id="tz-1" data-value="Asia/Singapore (GMT+8)" aria-selected="false">Asia/Singapore (GMT+8)</li>
+              <li role="option" id="tz-2" data-value="Europe/London (GMT+0)" aria-selected="false">Europe/London (GMT+0)</li>
+              <li role="option" id="tz-3" data-value="America/New_York (GMT-5)" aria-selected="false">America/New_York (GMT-5)</li>
+              <li role="option" id="tz-4" data-value="America/Los_Angeles (GMT-8)" aria-selected="false">America/Los_Angeles (GMT-8)</li>
+              <li role="option" id="tz-5" data-value="Australia/Sydney (GMT+11)" aria-selected="false">Australia/Sydney (GMT+11)</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="st-hours-row">
+              <span id="hours-summary">Mon–Fri · 9:00–17:00</span>
+              <button type="button" class="st-link-btn" id="edit-hours" aria-expanded="false" aria-controls="hours-editor">Edit hours</button>
+            </div>
+
+            <div class="st-hours-editor" id="hours-editor" hidden>
+              <p class="st-editor-label">Working days</p>
+              <div class="st-days" role="group" aria-label="Working days">
+                <button type="button" class="st-day is-on" data-day="Mon" aria-pressed="true" aria-label="Mon">M</button>
+                <button type="button" class="st-day is-on" data-day="Tue" aria-pressed="true" aria-label="Tue">T</button>
+                <button type="button" class="st-day is-on" data-day="Wed" aria-pressed="true" aria-label="Wed">W</button>
+                <button type="button" class="st-day is-on" data-day="Thu" aria-pressed="true" aria-label="Thu">T</button>
+                <button type="button" class="st-day is-on" data-day="Fri" aria-pressed="true" aria-label="Fri">F</button>
+                <button type="button" class="st-day" data-day="Sat" aria-pressed="false" aria-label="Sat">S</button>
+                <button type="button" class="st-day" data-day="Sun" aria-pressed="false" aria-label="Sun">S</button>
+              </div>
+              <div class="st-times">
+                <label>From <input type="time" id="hours-start" value="09:00"></label>
+                <label>To <input type="time" id="hours-end" value="17:00"></label>
+              </div>
+              <button type="button" class="st-btn st-btn--primary st-editor-done" id="hours-done">Done</button>
+            </div>
+            <input type="hidden" name="working_days" id="working-days" value="Mon,Tue,Wed,Thu,Fri">
+            <input type="hidden" name="working_hours" id="working-hours" value="09:00-17:00">
+          </section>
+
+          <section class="st-card">
+            <h2>Notifications</h2>
+            <label class="st-check">
+              <span>Client Requests</span>
+              <input type="checkbox" name="client_requests" checked>
+            </label>
+            <label class="st-check">
+              <span>Session Reminders</span>
+              <input type="checkbox" name="session_reminders" checked>
+            </label>
+            <label class="st-check">
+              <span>Client Messages</span>
+              <input type="checkbox" name="client_messages" checked>
+            </label>
+          </section>
+
+          <section class="st-card">
+            <h2>Privacy and Security</h2>
+            <label class="st-check st-check--lg">
+              <span>Two-Factor Authentication</span>
+              <input type="checkbox" name="two_factor" checked>
+            </label>
+            <a href="#" class="st-change-pw">Change password</a>
+          </section>
+
+          <div class="st-actions">
+            <button type="submit" class="st-btn st-btn--primary">Save Changes</button>
+            <button type="reset" class="st-btn st-btn--outline" id="cancel-btn">Cancel</button>
+            <a href="#" class="st-signout" id="signout-link">Sign Out</a>
+          </div>
+        </div>
+
+      </form>
+    </main>
+  </div>
+
+  <div class="st-toast" id="st-toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="../static/js/settings.js"></script>
+</body>
+</html>
